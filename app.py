@@ -17,19 +17,14 @@ uploaded_file = st.file_uploader('Choose an image to classify…', type = ['jpg'
 if uploaded_file is not None:
     image_bytes = uploaded_file.read()
     result = make_prediction(image_bytes)
-    if result['predicted_label'] < 0.5:
-        label = 'Gram Negative'
+    if result[0] > result[1]:
+        bacteria_class = "GN"
+        bacteria_class_name = "Gram Negative bacteria"
     else:
-        label = 'Gram Positive'
-    label = {result['predicted_label']}
-    st.write("###")
-    st.write("Classifying...")
-    #st.write(f'Predicticted label: {result['predicted_label']}')
-    #st.write(f'Probability: {result['probability']})
-    if label == "GN":
-        st.write("The Gram stain contains Gram negative bacteria")
-        st.write(f"Probability: {result['probability']}")
+        bacteria_class = "GP"
+        bacteria_class_name = "Gram Positive bacteria"
 
-    else:
-        st.write("The Gram stain contains Gram positive bacteria")
-        st.write(f"Probability: {result['probability']}")
+    
+    st.write(f"The Gram stain contains {bacteria_class_name}")
+    st.write(f"Probability of being in the {bacteria_class_name}: {probabilities[0] if bacteria_class == 'GN' else probabilities[1]}")
+
