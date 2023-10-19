@@ -17,6 +17,8 @@ uploaded_file = st.file_uploader('Choose an image to classify…', type = ['jpg'
 if uploaded_file is not None:
     image_bytes = uploaded_file.read()
     result = make_prediction(image_bytes)
+    st.write("---") #TESTING
+    st.write(result) #TESTING
     if result[0] > result[1]:
         bacteria_class = "GN"
         bacteria_class_name = "Gram Negative bacteria"
