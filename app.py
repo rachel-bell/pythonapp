@@ -14,7 +14,9 @@ def make_prediction(image_bytes):
 
 st.title('Gram Stain Image Classifier')
 uploaded_file = st.file_uploader('Choose an image to classify…', type = ['jpg', 'jpeg', 'png'])
+st.write("---")
 if uploaded_file is not None:
+    st.image(uploaded_file)
     image_bytes = uploaded_file.read()
     result = make_prediction(image_bytes)
     probabilities = [result["probabilities"][0], result["probabilities"][1]]
