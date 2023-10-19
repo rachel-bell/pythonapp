@@ -17,6 +17,10 @@ uploaded_file = st.file_uploader('Choose an image to classify…', type = ['jpg'
 if uploaded_file is not None:
     image_bytes = uploaded_file.read()
     result = make_prediction(image_bytes)
+    if result[0] < 0.5:
+        predicted_label = 'Gram Negative'
+    else:
+        predicted_label = 'Gram Positive'
     label = {result['predicted_label']}
     st.write("###")
     st.write("Classifying...")
