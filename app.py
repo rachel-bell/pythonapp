@@ -6,7 +6,7 @@ import json
 
 def make_prediction(image_bytes):
     runtime = boto3.Session().client('sagemaker-runtime')
-    response = runtime.invoke_endpoint(EndpointName='https://runtime.sagemaker.us-east-1.amazonaws.com/endpoints/jumpstart-example-FT-tensorflow-ic-imag-2023-10-19-03-49-36-994/invocations',
+    response = runtime.invoke_endpoint(EndpointName='jumpstart-example-FT-tensorflow-ic-imag-2023-10-19-03-49-36-994',
                                        ContentType = 'application/x-image',
                                        Region = 'us-east-1',
                                        Body=image_bytes)
