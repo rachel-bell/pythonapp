@@ -19,7 +19,7 @@ if uploaded_file is not None:
     result = make_prediction(image_bytes)
     st.write("---")
     st.write(result) #TESTING
-    if probabilities[0] > probabilities[1]:
+    if result.probabilities[0] > result.probabilities[1]:
         bacteria_class = "GN"
         bacteria_class_name = "Gram Negative bacteria"
     else:
